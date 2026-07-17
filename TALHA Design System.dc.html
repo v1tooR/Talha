@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:32px}
+body{margin:0;background:#10100E}
+::selection{background:#A14E2F;color:#F4F4E5}
+.ds-scroll::-webkit-scrollbar{width:9px;height:9px}
+.ds-scroll::-webkit-scrollbar-thumb{background:rgba(244,244,229,.18);border-radius:9px}
+.ds-scroll::-webkit-scrollbar-track{background:transparent}
+input::placeholder,textarea::placeholder{color:rgba(20,40,47,.36)}
+@keyframes mvPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+</style>
+</helmet>
+
+<div style="font-family:'Archivo',sans-serif;background:#F4F4E5;color:#14282F;-webkit-font-smoothing:antialiased;min-height:100vh">
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="ds-scroll" style="position:fixed;top:0;left:0;bottom:0;width:264px;background:#10100E;color:#F4F4E5;border-right:1px solid rgba(244,244,229,.1);padding:30px 24px 40px;overflow-y:auto;z-index:40;display:flex;flex-direction:column;gap:34px">
+  <a href="#intro" style="text-decoration:none;display:block">
+    <div style="display:flex;align-items:baseline;gap:9px">
+      <span style="font-weight:800;font-size:19px;letter-spacing:-.02em;color:#F4F4E5">TALHA</span>
+      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.22em;color:#B8B2A7">DESIGN SYSTEM</span>
+    </div>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;color:#6f6c63;margin-top:7px;letter-spacing:.08em">v1.0 · 2026</div>
+  </a>
+
+  <div style="position:relative">
+    <input id="ds-search" placeholder="Buscar token / componente" style="width:100%;background:#16160F;border:1px solid rgba(244,244,229,.16);border-radius:9px;padding:10px 12px 10px 34px;font-family:'Space Mono',monospace;font-size:11px;color:#F4F4E5;letter-spacing:.04em">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#807c73" stroke-width="2" style="position:absolute;left:11px;top:11px"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+  </div>
+
+  <nav style="display:flex;flex-direction:column;gap:26px">
+    <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="3">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:13px">{{ g.label }}</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+            <a href="#{{ it.id }}" data-nav="{{ it.id }}" style="text-decoration:none;font-size:13.5px;font-weight:500;color:#7d7a72;padding:7px 12px;border-left:2px solid transparent;border-radius:0 6px 6px 0;transition:color .2s,background .2s,border-color .2s;display:flex;align-items:center;gap:9px" style-hover="color:#F4F4E5;background:rgba(244,244,229,.04)">
+              <span style="font-family:'Space Mono',monospace;font-size:10px;color:#5f5c54">{{ it.n }}</span>{{ it.label }}
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </nav>
+
+  <div style="margin-top:auto;font-family:'Space Mono',monospace;font-size:10px;line-height:1.7;color:#5f5c54;letter-spacing:.05em">Boutique de design<br>e direção criativa</div>
+</aside>
+
+<!-- ===== MAIN ===== -->
+<main style="margin-left:264px">
+
+<!-- INTRO / COVER -->
+<section id="intro" data-ds data-screen-label="Introdução" style="background:#10100E;color:#F4F4E5;padding:clamp(56px,7vw,104px) clamp(32px,5vw,88px) clamp(64px,8vw,112px);position:relative;overflow:hidden">
+  <sc-if value="{{ grain }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);background-size:200px"></div>
+  </sc-if>
+  <div style="position:relative;max-width:1000px">
+    <div style="display:flex;align-items:center;gap:13px;margin-bottom:34px">
+      <span style="width:28px;height:1px;background:#A14E2F"></span>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#B8B2A7">Documentação viva · Fundamentos & componentes</span>
+    </div>
+    <h1 style="margin:0;font-weight:900;font-size:clamp(48px,8vw,116px);line-height:.9;letter-spacing:-.035em">Design<br>System</h1>
+    <p style="font-family:'Bodoni Moda',serif;font-style:italic;font-weight:400;font-size:clamp(20px,2.8vw,34px);line-height:1.18;color:#cdc9bf;margin:34px 0 0;max-width:24ch">A linguagem visual da Talha: clareza modernista, intensidade barroca, presença com relevo.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:46px">
+      <div style="border:1px solid rgba(244,244,229,.16);border-radius:12px;padding:18px 22px;min-width:130px">
+        <div style="font-weight:800;font-size:28px;letter-spacing:-.02em">10</div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#807c73;margin-top:4px">Cores núcleo</div>
+      </div>
+      <div style="border:1px solid rgba(244,244,229,.16);border-radius:12px;padding:18px 22px;min-width:130px">
+        <div style="font-weight:800;font-size:28px;letter-spacing:-.02em">3</div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#807c73;margin-top:4px">Famílias tipo.</div>
+      </div>
+      <div style="border:1px solid rgba(244,244,229,.16);border-radius:12px;padding:18px 22px;min-width:130px">
+        <div style="font-weight:800;font-size:28px;letter-spacing:-.02em">8px</div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#807c73;margin-top:4px">Base de grid</div>
+      </div>
+      <div style="border:1px solid rgba(161,78,47,.5);background:rgba(161,78,47,.12);border-radius:12px;padding:18px 22px;min-width:130px">
+        <div style="font-weight:800;font-size:28px;letter-spacing:-.02em;color:#D98C5F">∞</div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#cdc9bf;margin-top:4px">Relevo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCA -->
+<section id="marca" data-ds data-screen-label="Marca" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1)">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">01 — Marca</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0 0 14px;letter-spacing:-.01em">O logotipo</h2>
+    <p style="font-size:16px;line-height:1.65;color:#3c4a4e;max-width:54ch;margin:0 0 40px">Wordmark em Archivo Black. Vem do verbo <em>talhar</em> — esculpir, dar forma, criar relevo. O símbolo opcional é o losango talhado.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:18px">
+      <div style="flex:1 1 300px;min-width:0;background:#10100E;color:#F4F4E5;border-radius:18px;padding:clamp(32px,4vw,56px);display:flex;align-items:center;justify-content:center;min-height:200px">
+        <span style="font-weight:900;font-size:clamp(40px,6vw,72px);letter-spacing:-.04em">TALHA</span>
+      </div>
+      <div style="flex:1 1 220px;min-width:0;background:#F8F6F2;border:1px solid rgba(20,40,47,.12);border-radius:18px;padding:clamp(32px,4vw,56px);display:flex;align-items:center;justify-content:center;min-height:200px">
+        <svg width="92" height="92" viewBox="0 0 56 56" fill="none" stroke="#14282F" stroke-width="1.6"><path d="M28 6 L50 28 L28 50 L6 28 Z"/><path d="M28 18 L38 28 L28 38 L18 28 Z" fill="#A14E2F" stroke="none"/></svg>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:18px">
+      <div style="flex:1 1 240px;min-width:0;border:1px solid rgba(31,138,91,.35);background:rgba(47,61,54,.06);border-radius:14px;padding:22px 24px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F7D4F" stroke-width="2.4"><path d="m20 6-11 11-5-5"/></svg><span style="font-weight:700;font-size:14px;color:#2F7D4F">Faça</span></div>
+        <p style="font-size:13.5px;line-height:1.55;color:#3c4a4e;margin:0">Preserve a área de respiro igual à altura do "T". Use sobre Preto Talha, Marfim ou Papel.</p>
+      </div>
+      <div style="flex:1 1 240px;min-width:0;border:1px solid rgba(161,78,47,.4);background:rgba(161,78,47,.06);border-radius:14px;padding:22px 24px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A14E2F" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg><span style="font-weight:700;font-size:14px;color:#A14E2F">Evite</span></div>
+        <p style="font-size:13.5px;line-height:1.55;color:#3c4a4e;margin:0">Não distorça, não troque a fonte, não aplique sombra ou contorno nem rotacione o wordmark.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COR -->
+<section id="cor" data-ds data-screen-label="Cor" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1)">
+  <div style="max-width:1080px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:40px">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">02 — Cor</div>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0;letter-spacing:-.01em">Paleta & papéis</h2>
+      </div>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;color:#7a766d">clique para copiar o hex</span>
+    </div>
+    <sc-for list="{{ colorGroups }}" as="grp" hint-placeholder-count="3">
+      <div style="margin-bottom:38px">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7a766d;margin-bottom:16px">{{ grp.label }}</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:14px">
+          <sc-for list="{{ grp.items }}" as="c" hint-placeholder-count="4">
+            <button onClick="{{ c.onClick }}" style="appearance:none;text-align:left;cursor:pointer;font-family:inherit;border:1px solid rgba(20,40,47,.12);background:#FFFDF8;border-radius:12px;overflow:hidden;padding:0;transition:transform .24s cubic-bezier(.2,.7,.2,1),box-shadow .24s" style-hover="transform:translateY(-5px);box-shadow:0 20px 38px -18px rgba(20,40,47,.28)">
+              <div style="height:96px;background:{{ c.hex }}"></div>
+              <div style="padding:13px 15px 16px">
+                <div style="font-weight:700;font-size:13.5px;letter-spacing:-.01em;color:#14282F">{{ c.name }}</div>
+                <div style="font-family:'Space Mono',monospace;font-size:11px;color:#A14E2F;margin-top:4px">{{ c.hexLabel }}</div>
+                <div style="font-size:11.5px;color:#7a766d;margin-top:8px;line-height:1.4">{{ c.role }}</div>
+              </div>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA -->
+<section id="tipografia" data-ds data-screen-label="Tipografia" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1);background:#F8F6F2">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">03 — Tipografia</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0 0 14px;letter-spacing:-.01em">Três vozes</h2>
+    <p style="font-size:16px;line-height:1.65;color:#3c4a4e;max-width:54ch;margin:0 0 40px"><strong style="font-weight:600;color:#14282F">Archivo</strong> para títulos e UI, <strong style="font-weight:600;color:#14282F">Bodoni Moda</strong> para editorial e <strong style="font-weight:600;color:#14282F">Space Mono</strong> para metadados e código.</p>
+
+    <div style="background:#FFFDF8;border:1px solid rgba(20,40,47,.1);border-radius:18px;padding:clamp(24px,3vw,40px);margin-bottom:34px">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center;margin-bottom:18px">
+        <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7a766d">Type tester</span>
+        <div style="display:flex;gap:6px">
+          <sc-for list="{{ testerFonts }}" as="tf" hint-placeholder-count="3">
+            <button onClick="{{ tf.onClick }}" style="appearance:none;cursor:pointer;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;padding:7px 13px;border-radius:999px;border:1px solid {{ tf.border }};background:{{ tf.bg }};color:{{ tf.color }};transition:all .2s">{{ tf.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <input value="{{ typeText }}" onInput="{{ onType }}" style="width:100%;font-family:{{ testerFamily }};font-style:{{ testerStyle }};font-weight:{{ testerWeight }};font-size:clamp(28px,6vw,72px);line-height:1.04;color:#14282F;background:transparent;border:none;border-bottom:2px solid rgba(20,40,47,.16);padding:0 0 14px;transition:border-color .2s" style-focus="border-color:#A14E2F">
+    </div>
+
+    <div style="border-top:1px solid rgba(20,40,47,.12)">
+      <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="6">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:18px;padding:20px 4px;border-bottom:1px solid rgba(20,40,47,.1)">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#A14E2F;width:90px;flex:none">{{ t.token }}</span>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#7a766d;width:120px;flex:none">{{ t.spec }}</span>
+          <span style="flex:1 1 240px;min-width:0;font-family:{{ t.family }};font-style:{{ t.style }};font-weight:{{ t.weight }};font-size:{{ t.px }};line-height:1.1;color:#14282F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.sample }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ESPAÇAMENTO -->
+<section id="espaco" data-ds data-screen-label="Espaçamento" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1)">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">04 — Espaçamento</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0 0 14px;letter-spacing:-.01em">Escala base 8</h2>
+    <p style="font-size:16px;line-height:1.65;color:#3c4a4e;max-width:54ch;margin:0 0 40px">Toda dimensão é múltiplo de 8 (com micro-passo de 4). Ritmo consistente entre densidade e respiro.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <sc-for list="{{ spacing }}" as="sp" hint-placeholder-count="6">
+        <div style="display:flex;align-items:center;gap:20px">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:#14282F;width:60px;flex:none">{{ sp.token }}</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:#7a766d;width:54px;flex:none">{{ sp.px }}</span>
+          <div style="height:22px;background:#A14E2F;border-radius:3px;width:{{ sp.px }}"></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- GRID -->
+<section id="grid" data-ds data-screen-label="Grid" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1);background:#F8F6F2">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">05 — Grid</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0 0 14px;letter-spacing:-.01em">12 colunas</h2>
+    <p style="font-size:16px;line-height:1.65;color:#3c4a4e;max-width:54ch;margin:0 0 36px">Container máx. 1080px, gutter 24px, margens fluidas. Layouts editoriais quebram a grade com intenção.</p>
+    <div style="background:#FFFDF8;border:1px solid rgba(20,40,47,.1);border-radius:16px;padding:24px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px">
+      <sc-for list="{{ gridCols }}" as="col" hint-placeholder-count="12">
+        <div style="height:120px;background:rgba(161,78,47,.14);border:1px solid rgba(161,78,47,.3);border-radius:5px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px"><span style="font-family:'Space Mono',monospace;font-size:10px;color:#A14E2F">{{ col }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- RAIO & ELEVAÇÃO -->
+<section id="raio" data-ds data-screen-label="Raio & Elevação" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1)">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">06 — Raio & Elevação</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0 0 40px;letter-spacing:-.01em">Forma & profundidade</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:38px">
+      <sc-for list="{{ radii }}" as="r" hint-placeholder-count="5">
+        <div style="flex:1 1 150px;min-width:0;text-align:center">
+          <div style="height:96px;background:#14282F;border-radius:{{ r.px }};margin-bottom:12px"></div>
+          <div style="font-family:'Space Mono',monospace;font-size:12px;color:#14282F">{{ r.token }}</div>
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7a766d;margin-top:3px">{{ r.px }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:18px">
+      <sc-for list="{{ elevation }}" as="e" hint-placeholder-count="3">
+        <div style="flex:1 1 220px;min-width:0;background:#FFFDF8;border-radius:16px;padding:26px;box-shadow:{{ e.shadow }}">
+          <div style="font-weight:700;font-size:15px;color:#14282F;margin-bottom:6px">{{ e.token }}</div>
+          <div style="font-size:13px;color:#7a766d;line-height:1.5">{{ e.use }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ÍCONES -->
+<section id="icones" data-ds data-screen-label="Ícones" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1);background:#10100E;color:#F4F4E5">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#D98C5F;margin-bottom:16px">07 — Ícones</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0 0 14px;letter-spacing:-.01em">Traço de 1.8</h2>
+    <p style="font-size:16px;line-height:1.65;color:#a8a399;max-width:54ch;margin:0 0 40px">Grade de 24px, cantos vivos, traço uniforme. Linha — nunca preenchidos, exceto o acento Argila.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:12px">
+      <sc-for list="{{ icons }}" as="ic" hint-placeholder-count="10">
+        <div style="aspect-ratio:1;background:#16160F;border:1px solid rgba(244,244,229,.12);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:border-color .2s,background .2s" style-hover="border-color:#A14E2F;background:#1c1b13">
+          <div style="color:#F4F4E5">{{ ic.svg }}</div>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:#807c73">{{ ic.name }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTES -->
+<section id="componentes" data-ds data-screen-label="Componentes" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1)">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">08 — Componentes</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0 0 44px;letter-spacing:-.01em">Biblioteca</h2>
+
+    <!-- Buttons -->
+    <div style="margin-bottom:44px">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-bottom:22px">
+        <h3 style="font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0">Botões</h3>
+        <div style="display:flex;gap:6px">
+          <sc-for list="{{ btnSizes }}" as="bs" hint-placeholder-count="3">
+            <button onClick="{{ bs.onClick }}" style="appearance:none;cursor:pointer;font-family:'Space Mono',monospace;font-size:11px;padding:6px 12px;border-radius:999px;border:1px solid {{ bs.border }};background:{{ bs.bg }};color:{{ bs.color }};transition:all .2s">{{ bs.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#FFFDF8;border:1px solid rgba(20,40,47,.1);border-radius:18px;padding:clamp(28px,4vw,48px);display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <button style="appearance:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:{{ btnFont }};color:#10100E;background:#A14E2F;border:none;padding:{{ btnPad }};border-radius:10px;transition:background .2s,transform .2s" style-hover="background:#B85A38;transform:translateY(-2px)" style-active="transform:translateY(0)">Primária</button>
+        <button style="appearance:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:{{ btnFont }};color:#14282F;background:transparent;border:1px solid rgba(20,40,47,.32);padding:{{ btnPad }};border-radius:10px;transition:all .2s" style-hover="border-color:#14282F;background:rgba(20,40,47,.04)">Secundária</button>
+        <button style="appearance:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:{{ btnFont }};color:#A14E2F;background:transparent;border:none;padding:{{ btnPad }};border-radius:10px;transition:background .2s" style-hover="background:rgba(161,78,47,.1)">Fantasma</button>
+        <button style="appearance:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:{{ btnFont }};color:#F4F4E5;background:#14282F;border:none;padding:{{ btnPad }};border-radius:10px;transition:background .2s,transform .2s" style-hover="background:#1d3741;transform:translateY(-2px)">Escura</button>
+        <button disabled style="font-family:inherit;font-weight:600;font-size:{{ btnFont }};color:#9b968c;background:rgba(20,40,47,.08);border:none;padding:{{ btnPad }};border-radius:10px;cursor:not-allowed">Desabilitada</button>
+      </div>
+    </div>
+
+    <!-- Inputs + Badges -->
+    <div style="display:flex;flex-wrap:wrap;gap:18px;margin-bottom:44px">
+      <div style="flex:1 1 320px;min-width:0">
+        <h3 style="font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0 0 22px">Campos</h3>
+        <div style="background:#FFFDF8;border:1px solid rgba(20,40,47,.1);border-radius:18px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:18px">
+          <div>
+            <label style="display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7a766d;margin-bottom:8px">Texto</label>
+            <input placeholder="Nome do projeto" style="width:100%;background:#fff;border:1px solid rgba(20,40,47,.18);border-radius:10px;padding:13px 15px;font-family:inherit;font-size:15px;color:#14282F;transition:border-color .2s" style-focus="border-color:#A14E2F">
+          </div>
+          <div>
+            <label style="display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7a766d;margin-bottom:8px">Área de texto</label>
+            <textarea rows="3" placeholder="Descreva a marca…" style="width:100%;background:#fff;border:1px solid rgba(20,40,47,.18);border-radius:10px;padding:13px 15px;font-family:inherit;font-size:15px;color:#14282F;resize:vertical;transition:border-color .2s" style-focus="border-color:#A14E2F"></textarea>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;color:#14282F;font-weight:500">Toggle</span>
+            <button onClick="{{ onToggle }}" style="appearance:none;cursor:pointer;border:none;width:50px;height:28px;border-radius:999px;background:{{ toggleBg }};position:relative;transition:background .25s;padding:0">
+              <span style="position:absolute;top:3px;left:{{ toggleX }};width:22px;height:22px;border-radius:999px;background:#fff;transition:left .25s cubic-bezier(.2,.7,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.3)"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1 1 320px;min-width:0">
+        <h3 style="font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0 0 22px">Badges & Tags</h3>
+        <div style="background:#FFFDF8;border:1px solid rgba(20,40,47,.1);border-radius:18px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <span style="font-size:12px;font-weight:600;color:#10100E;background:#A14E2F;padding:5px 12px;border-radius:999px">Em destaque</span>
+            <span style="font-size:12px;font-weight:600;color:#14282F;background:#D9D2C3;padding:5px 12px;border-radius:999px">Neutro</span>
+            <span style="font-size:12px;font-weight:600;color:#F4F4E5;background:#2F3D36;padding:5px 12px;border-radius:999px">Sucesso</span>
+            <span style="font-size:12px;font-weight:600;color:#B88746;background:rgba(184,135,70,.16);padding:5px 12px;border-radius:999px">Ouro</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;color:#14282F;border:1px solid rgba(20,40,47,.24);padding:5px 11px;border-radius:6px">Branding</span>
+            <span style="font-family:'Space Mono',monospace;font-size:11px;color:#14282F;border:1px solid rgba(20,40,47,.24);padding:5px 11px;border-radius:6px">IA Criativa</span>
+            <span style="font-family:'Space Mono',monospace;font-size:11px;color:#14282F;border:1px solid rgba(20,40,47,.24);padding:5px 11px;border-radius:6px">Design</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;border-top:1px solid rgba(20,40,47,.1);padding-top:18px">
+            <span style="width:40px;height:40px;border-radius:999px;background:#14282F;color:#F4F4E5;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none">T</span>
+            <div>
+              <div style="font-weight:600;font-size:14px;color:#14282F">Talha Studio</div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7a766d">Avatar · 40px</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div>
+      <h3 style="font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0 0 22px">Cards</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:16px">
+        <div style="flex:1 1 240px;min-width:0;background:#FFFDF8;border:1px solid rgba(20,40,47,.1);border-radius:18px;padding:28px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s" style-hover="transform:translateY(-6px);box-shadow:0 24px 48px -20px rgba(20,40,47,.22);border-color:#A14E2F">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:#A14E2F">01</span>
+          <h4 style="font-weight:700;font-size:22px;margin:18px 0 10px;letter-spacing:-.01em">Sentir</h4>
+          <p style="font-size:14px;line-height:1.6;color:#4a5559;margin:0">Contexto, cultura e tensão antes da forma.</p>
+        </div>
+        <div style="flex:1 1 240px;min-width:0;background:#14282F;color:#F4F4E5;border-radius:18px;padding:28px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s" style-hover="transform:translateY(-6px);box-shadow:0 24px 48px -20px rgba(20,40,47,.4)">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:#D98C5F">02</span>
+          <h4 style="font-weight:700;font-size:22px;margin:18px 0 10px;letter-spacing:-.01em">Talhar</h4>
+          <p style="font-size:14px;line-height:1.6;color:#c2cbcd;margin:0">Refino e relevo até virar sistema.</p>
+        </div>
+        <div style="flex:1 1 240px;min-width:0;background:#A14E2F;color:#10100E;border-radius:18px;padding:28px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s" style-hover="transform:translateY(-6px);box-shadow:0 24px 48px -20px rgba(161,78,47,.5)">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:#5a2d1b">03</span>
+          <h4 style="font-weight:800;font-size:22px;margin:18px 0 10px;letter-spacing:-.01em">Presença</h4>
+          <p style="font-size:14px;line-height:1.6;color:#3a1d12;margin:0">A marca ganha luz, sombra e memória.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOVIMENTO -->
+<section id="movimento" data-ds data-screen-label="Movimento" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);border-bottom:1px solid rgba(20,40,47,.1);background:#F8F6F2">
+  <div style="max-width:1080px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:40px">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A14E2F;margin-bottom:16px">09 — Movimento</div>
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0;letter-spacing:-.01em">Curvas & tempo</h2>
+      </div>
+      <button onClick="{{ onPlay }}" style="appearance:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;color:#10100E;background:#A14E2F;border:none;padding:12px 22px;border-radius:999px;transition:background .2s,transform .2s" style-hover="background:#B85A38;transform:translateY(-2px)">Reproduzir ▸</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-for list="{{ motion }}" as="m" hint-placeholder-count="3">
+        <div style="background:#FFFDF8;border:1px solid rgba(20,40,47,.1);border-radius:14px;padding:20px 24px">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-bottom:14px">
+            <span style="font-weight:700;font-size:15px;color:#14282F">{{ m.name }}</span>
+            <span style="font-family:'Space Mono',monospace;font-size:11px;color:#7a766d">{{ m.spec }}</span>
+          </div>
+          <div style="height:30px;background:rgba(20,40,47,.06);border-radius:999px;position:relative">
+            <div style="position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:999px;background:#A14E2F;transform:translateX({{ m.x }});transition:transform {{ m.dur }} {{ m.ease }}"></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- VOZ -->
+<section id="voz" data-ds data-screen-label="Voz & Tom" style="padding:clamp(56px,6vw,96px) clamp(32px,5vw,88px);background:#10100E;color:#F4F4E5">
+  <div style="max-width:1080px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#D98C5F;margin-bottom:16px">10 — Voz & Tom</div>
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(30px,4.4vw,56px);margin:0 0 44px;letter-spacing:-.01em;max-width:20ch">Falamos como quem <span style="font-style:italic;color:#D98C5F">talha</span>: com intenção e detalhe.</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:16px">
+      <sc-for list="{{ voice }}" as="v" hint-placeholder-count="3">
+        <div style="flex:1 1 240px;min-width:0;border:1px solid rgba(244,244,229,.14);border-radius:16px;padding:28px">
+          <div style="font-weight:700;font-size:18px;margin-bottom:14px;color:#F4F4E5">{{ v.t }}</div>
+          <p style="font-size:14px;line-height:1.6;color:#a8a399;margin:0 0 18px">{{ v.d }}</p>
+          <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(244,244,229,.1);padding-top:16px">
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5fae7f" stroke-width="2.6" style="margin-top:2px;flex:none"><path d="m20 6-11 11-5-5"/></svg><span style="font-size:13px;color:#cdc9bf">{{ v.yes }}</span></div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C9694A" stroke-width="2.6" style="margin-top:2px;flex:none"><path d="M18 6 6 18M6 6l12 12"/></svg><span style="font-size:13px;color:#7d7a72">{{ v.no }}</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:56px;padding-top:28px;border-top:1px solid rgba(244,244,229,.1);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center">
+      <span style="font-weight:800;font-size:20px;letter-spacing:-.02em">TALHA <span style="font-weight:400;color:#807c73;font-size:13px;font-family:'Space Mono',monospace;letter-spacing:.1em">DESIGN SYSTEM</span></span>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;color:#5f5c54;letter-spacing:.08em">Design para marcas com relevo · v1.0 · 2026</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- TOAST -->
+<sc-if value="{{ copied }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:calc(50% + 132px);bottom:30px;transform:translateX(-50%);z-index:80;background:#10100E;color:#F4F4E5;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;padding:12px 20px;border-radius:999px;box-shadow:0 16px 40px -12px rgba(0,0,0,.5);border:1px solid rgba(244,244,229,.16)">{{ copied }} copiado</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:1100},&quot;grain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const I = (paths, opts) => {
+  const a = (opts && opts.stroke) || 'currentColor';
+  const fill = (opts && opts.fill) || 'none';
+  return React.createElement('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill, stroke: a, strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' },
+    paths.map((d, i) => typeof d === 'string'
+      ? React.createElement('path', { key: i, d })
+      : React.createElement(d.tag, { key: i, ...d.attrs })));
+};
+
+class Component extends DCLogic {
+  _colorGroups = [
+    { label: 'Núcleo', items: [
+      { name: 'Preto Talha', hex: '#10100E', role: 'Fundo primário / texto escuro' },
+      { name: 'Marfim', hex: '#F4F4E5', role: 'Fundo claro / texto sobre escuro' },
+      { name: 'Argila', hex: '#A14E2F', role: 'Primária · ação · acento' },
+    ]},
+    { label: 'Acento', items: [
+      { name: 'Ouro Velho', hex: '#B88746', role: 'Secundária · destaque editorial' },
+      { name: 'Verde Musgo', hex: '#2F3D36', role: 'Superfície · sucesso' },
+      { name: 'Azul Profundo', hex: '#14282F', role: 'Superfície escura · texto' },
+    ]},
+    { label: 'Neutros', items: [
+      { name: 'Concreto', hex: '#B8B2A7', role: 'Texto secundário · bordas' },
+      { name: 'Areia', hex: '#D9D2C3', role: 'Superfície neutra · badges' },
+      { name: 'Papel', hex: '#F8F6F2', role: 'Fundo de seção claro' },
+      { name: 'Grafite', hex: '#2A2A2A', role: 'UI escura · código' },
+    ]},
+  ];
+
+  _navGroups = [
+    { label: 'Fundamentos', items: [
+      { n: '01', id: 'marca', label: 'Marca' },
+      { n: '02', id: 'cor', label: 'Cor' },
+      { n: '03', id: 'tipografia', label: 'Tipografia' },
+      { n: '04', id: 'espaco', label: 'Espaçamento' },
+      { n: '05', id: 'grid', label: 'Grid' },
+      { n: '06', id: 'raio', label: 'Raio & Elevação' },
+      { n: '07', id: 'icones', label: 'Ícones' },
+    ]},
+    { label: 'Componentes', items: [
+      { n: '08', id: 'componentes', label: 'Biblioteca' },
+      { n: '09', id: 'movimento', label: 'Movimento' },
+    ]},
+    { label: 'Diretrizes', items: [
+      { n: '10', id: 'voz', label: 'Voz & Tom' },
+    ]},
+  ];
+
+  _typeScale = [
+    { token: 'display', spec: 'Archivo 900 · 96', px: '60px', family: "'Archivo',sans-serif", weight: 900, style: 'normal', sample: 'Talhar' },
+    { token: 'h1', spec: 'Archivo 800 · 60', px: '44px', family: "'Archivo',sans-serif", weight: 800, style: 'normal', sample: 'Marcas com relevo' },
+    { token: 'h2', spec: 'Bodoni 500i · 44', px: '34px', family: "'Bodoni Moda',serif", weight: 500, style: 'italic', sample: 'Forma e inteligência' },
+    { token: 'h3', spec: 'Archivo 700 · 32', px: '26px', family: "'Archivo',sans-serif", weight: 700, style: 'normal', sample: 'Nosso processo' },
+    { token: 'body', spec: 'Archivo 400 · 16', px: '16px', family: "'Archivo',sans-serif", weight: 400, style: 'normal', sample: 'Texto corrido para leitura confortável e clara.' },
+    { token: 'mono', spec: 'Space Mono · 12', px: '13px', family: "'Space Mono',monospace", weight: 400, style: 'normal', sample: '#A14E2F · OFÍCIO · 01—10' },
+  ];
+
+  _spacing = [
+    { token: 'sp-1', px: '4px' }, { token: 'sp-2', px: '8px' }, { token: 'sp-3', px: '12px' },
+    { token: 'sp-4', px: '16px' }, { token: 'sp-6', px: '24px' }, { token: 'sp-8', px: '32px' },
+    { token: 'sp-12', px: '48px' }, { token: 'sp-16', px: '64px' }, { token: 'sp-24', px: '96px' },
+  ];
+
+  _radii = [
+    { token: 'r-none', px: '0px' }, { token: 'r-sm', px: '6px' }, { token: 'r-md', px: '12px' },
+    { token: 'r-lg', px: '20px' }, { token: 'r-full', px: '999px' },
+  ];
+
+  _elevation = [
+    { token: 'e-1 · sutil', shadow: '0 1px 3px rgba(20,40,47,.12)', use: 'Cards em repouso, inputs.' },
+    { token: 'e-2 · médio', shadow: '0 12px 28px -12px rgba(20,40,47,.24)', use: 'Hover de cards, popovers.' },
+    { token: 'e-3 · alto', shadow: '0 28px 56px -20px rgba(20,40,47,.4)', use: 'Modais, overlays, toasts.' },
+  ];
+
+  _voice = [
+    { t: 'Direto', d: 'Frases curtas, verbo forte, sem rodeio. A clareza modernista.', yes: '"Design para marcas com relevo."', no: '"Soluções inovadoras de branding 360°."' },
+    { t: 'Sensível', d: 'Cultura, emoção e detalhe. A intensidade barroca.', yes: '"Marcas com luz, sombra e memória."', no: '"Entregáveis otimizados."' },
+    { t: 'Confiante', d: 'Afirma uma direção, não pede permissão. Presença.', yes: '"Talhamos presença."', no: '"Podemos tentar algumas ideias?"' },
+  ];
+
+  _motionDefs = [
+    { name: 'Talha (padrão)', spec: '240ms · cubic-bezier(.2,.7,.2,1)', dur: '0.55s', ease: 'cubic-bezier(.2,.7,.2,1)' },
+    { name: 'Entrada', spec: '400ms · ease-out', dur: '0.7s', ease: 'cubic-bezier(.16,1,.3,1)' },
+    { name: 'Micro', spec: '120ms · ease', dur: '0.35s', ease: 'cubic-bezier(.4,0,.2,1)' },
+  ];
+
+  _fonts = [
+    { label: 'Archivo', family: "'Archivo',sans-serif", style: 'normal', weight: 800 },
+    { label: 'Bodoni', family: "'Bodoni Moda',serif", style: 'italic', weight: 500 },
+    { label: 'Mono', family: "'Space Mono',monospace", style: 'normal', weight: 700 },
+  ];
+
+  state = {
+    copied: null, typeText: 'Marcas com relevo', testerIdx: 1,
+    toggle: true, btnSize: 1, play: false,
+  };
+
+  componentDidMount() {
+    const links = {};
+    document.querySelectorAll('[data-nav]').forEach(a => links[a.getAttribute('data-nav')] = a);
+    const setActive = (id) => {
+      Object.entries(links).forEach(([k, a]) => {
+        const on = k === id;
+        a.style.color = on ? '#F4F4E5' : '#7d7a72';
+        a.style.borderLeftColor = on ? '#A14E2F' : 'transparent';
+        a.style.background = on ? 'rgba(244,244,229,.05)' : 'transparent';
+      });
+    };
+    this._obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-42% 0px -52% 0px', threshold: 0 });
+    document.querySelectorAll('section[data-ds]').forEach(s => this._obs.observe(s));
+
+    // sidebar search filter
+    const search = document.getElementById('ds-search');
+    if (search) {
+      this._onSearch = () => {
+        const q = search.value.trim().toLowerCase();
+        Object.values(links).forEach(a => {
+          const hit = !q || a.textContent.toLowerCase().includes(q);
+          a.style.display = hit ? '' : 'none';
+        });
+      };
+      search.addEventListener('input', this._onSearch);
+    }
+  }
+  componentWillUnmount() {
+    this._obs && this._obs.disconnect();
+    clearTimeout(this._ct);
+  }
+
+  copy(hex) {
+    try { navigator.clipboard && navigator.clipboard.writeText(hex); } catch (e) {}
+    this.setState({ copied: hex });
+    clearTimeout(this._ct);
+    this._ct = setTimeout(() => this.setState({ copied: null }), 1500);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const tf = this._fonts[s.testerIdx];
+    const sizes = [{ label: 'SM', font: '13px', pad: '9px 16px' }, { label: 'MD', font: '15px', pad: '12px 22px' }, { label: 'LG', font: '17px', pad: '15px 28px' }];
+    const cur = sizes[s.btnSize];
+
+    return {
+      grain: this.props.grain ?? true,
+      navGroups: this._navGroups,
+      colorGroups: this._colorGroups.map(g => ({
+        label: g.label,
+        items: g.items.map(c => ({ ...c, hexLabel: c.hex.toUpperCase(), onClick: () => this.copy(c.hex) })),
+      })),
+      copied: s.copied,
+
+      typeText: s.typeText,
+      onType: e => this.setState({ typeText: e.target.value }),
+      testerFamily: tf.family, testerStyle: tf.style, testerWeight: tf.weight,
+      testerFonts: this._fonts.map((f, i) => {
+        const on = i === s.testerIdx;
+        return { label: f.label, onClick: () => this.setState({ testerIdx: i }),
+          bg: on ? '#A14E2F' : 'transparent', color: on ? '#10100E' : '#7a766d',
+          border: on ? '#A14E2F' : 'rgba(20,40,47,.2)' };
+      }),
+      typeScale: this._typeScale,
+
+      spacing: this._spacing,
+      gridCols: Array.from({ length: 12 }, (_, i) => i + 1),
+      radii: this._radii,
+      elevation: this._elevation,
+
+      icons: [
+        { name: 'arrow', svg: I(['M5 12h14', 'm13 6 6 6-6 6']) },
+        { name: 'search', svg: I([{ tag: 'circle', attrs: { cx: 11, cy: 11, r: 7 } }, 'm21 21-4.3-4.3']) },
+        { name: 'check', svg: I(['m20 6-11 11-5-5']) },
+        { name: 'close', svg: I(['M18 6 6 18', 'm6 6 12 12']) },
+        { name: 'plus', svg: I(['M12 5v14', 'M5 12h14']) },
+        { name: 'menu', svg: I(['M4 6h16', 'M4 12h16', 'M4 18h16']) },
+        { name: 'diamond', svg: I([{ tag: 'path', attrs: { d: 'M12 3 21 12 12 21 3 12Z' } }, { tag: 'path', attrs: { d: 'M12 8 16 12 12 16 8 12Z', fill: '#A14E2F', stroke: 'none' } }]) },
+        { name: 'play', svg: I([{ tag: 'path', attrs: { d: 'M7 5l12 7-12 7Z' } }]) },
+        { name: 'mail', svg: I([{ tag: 'rect', attrs: { x: 3, y: 5, width: 18, height: 14, rx: 2 } }, 'm3 7 9 6 9-6']) },
+        { name: 'layers', svg: I(['m12 3 9 5-9 5-9-5 9-5Z', 'm3 13 9 5 9-5']) },
+        { name: 'star', svg: I(['m12 3 2.6 6.3 6.4.5-4.9 4.2 1.5 6.5L12 17l-5.6 3.5 1.5-6.5L3 9.8l6.4-.5Z']) },
+        { name: 'globe', svg: I([{ tag: 'circle', attrs: { cx: 12, cy: 12, r: 9 } }, 'M3 12h18', 'M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18']) },
+      ],
+
+      onToggle: () => this.setState(st => ({ toggle: !st.toggle })),
+      toggleBg: s.toggle ? '#A14E2F' : 'rgba(20,40,47,.2)',
+      toggleX: s.toggle ? '25px' : '3px',
+
+      btnSizes: sizes.map((z, i) => {
+        const on = i === s.btnSize;
+        return { label: z.label, onClick: () => this.setState({ btnSize: i }),
+          bg: on ? '#14282F' : 'transparent', color: on ? '#F4F4E5' : '#7a766d',
+          border: on ? '#14282F' : 'rgba(20,40,47,.2)' };
+      }),
+      btnFont: cur.font, btnPad: cur.pad,
+
+      onPlay: () => { this.setState({ play: true }); clearTimeout(this._pt); this._pt = setTimeout(() => this.setState({ play: false }), 900); },
+      motion: this._motionDefs.map(m => ({ ...m, x: s.play ? 'calc(100% - 30px)' : '0px' })),
+
+      voice: this._voice,
+    };
+  }
+}
+</script>
+</body>
+</html>
