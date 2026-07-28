@@ -134,6 +134,43 @@ input::placeholder,textarea::placeholder{color:rgba(244,244,229,.34)}
 .ed-zoom-progress{position:absolute;z-index:22;left:0;bottom:0;width:0;height:3px;background:#B88746;will-change:width}
 
 /* Services — native editorial port of the supplied hover slideshow */
+/* Technology + process — one cinematic scroll narrative */
+.ed-criteria-story{position:relative;height:660svh;min-height:4700px;background:#A14E2F;color:#F4F4E5;isolation:isolate}
+.ed-criteria-stage{position:sticky;top:62px;height:calc(100svh - 62px);min-height:640px;overflow:hidden;background:#A14E2F}
+.ed-criteria-atmosphere{position:absolute;z-index:1;inset:0;overflow:hidden;background:#A14E2F}
+.ed-criteria-atmosphere:after{content:"";position:absolute;z-index:4;inset:0;pointer-events:none;opacity:.055;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E")}
+.ed-criteria-portrait{position:absolute;z-index:1;inset:0 0 0 auto;width:58%;height:100%;object-fit:cover;object-position:70% 40%;filter:saturate(.84) contrast(1.06);will-change:transform}
+.ed-criteria-veil{position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,#A14E2F 0%,#A14E2F 35%,rgba(161,78,47,.78) 52%,rgba(161,78,47,.12) 78%),linear-gradient(0deg,rgba(100,38,18,.2),transparent 58%);will-change:opacity}
+.ed-criteria-intro{position:relative;z-index:5;width:100%;height:100%;max-width:1440px;margin:0 auto;padding:clamp(26px,4vw,52px);display:flex;flex-direction:column;justify-content:center;will-change:opacity,transform,filter}
+.ed-criteria-meta{position:absolute;top:clamp(24px,3.5vw,44px);left:clamp(18px,4vw,52px);right:clamp(18px,4vw,52px);display:flex;align-items:baseline;gap:16px;border-bottom:1px solid rgba(244,244,229,.3);padding-bottom:16px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.ed-criteria-meta strong{font-weight:400;color:#F4F4E5}.ed-criteria-meta span{color:rgba(244,244,229,.7)}
+.ed-criteria-title{max-width:12ch;margin:0;font-family:'Bodoni Moda',serif;font-size:clamp(54px,7.4vw,116px);font-weight:400;line-height:.91;letter-spacing:-.04em;text-wrap:balance;text-shadow:0 3px 34px rgba(78,25,10,.4)}
+.ed-criteria-title em{font-weight:400;color:#F4F4E5}
+.ed-criteria-copy{position:static;inset:auto;z-index:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,70px);width:min(720px,54vw);margin-top:clamp(42px,6vh,76px);padding-top:clamp(22px,3vh,34px);border:0;border-top:1px solid rgba(244,244,229,.34)}
+.ed-criteria-copy p{margin:0;font-size:clamp(15px,1.25vw,17px);line-height:1.68;color:rgba(244,244,229,.94)}
+.ed-process-card{position:absolute;z-index:10;left:7vw;top:7%;width:86vw;height:86%;overflow:hidden;border:1px solid rgba(20,40,47,.09);border-radius:40px;background:#F8F6F2;color:#14282F;box-shadow:0 44px 120px -30px rgba(42,14,7,.72),0 20px 48px -24px rgba(42,14,7,.55),inset 0 1px 0 rgba(255,255,255,.8);transform:translate3d(0,calc(100vh + 160px),0);will-change:transform,width,height,left,top,border-radius}
+.ed-process-card:before{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;opacity:.33;background-image:radial-gradient(rgba(20,40,47,.16) .55px,transparent .7px),linear-gradient(125deg,rgba(184,135,70,.045),transparent 40%,rgba(161,78,47,.04));background-size:4px 4px,100% 100%;mix-blend-mode:multiply}
+.ed-process-card:after{content:"";position:absolute;z-index:1;left:-14vw;bottom:-48vh;width:60vw;height:60vw;border:1px solid rgba(184,135,70,.22);border-radius:50%;box-shadow:0 0 0 24px rgba(184,135,70,.045),0 0 0 58px rgba(184,135,70,.025);pointer-events:none}
+.ed-process-inner{position:relative;z-index:2;width:100%;height:100%;max-width:1440px;margin:0 auto;padding:clamp(24px,4vw,52px)}
+.ed-process-meta{display:flex;align-items:baseline;justify-content:space-between;gap:24px;border-bottom:1px solid rgba(20,40,47,.2);padding-bottom:16px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:0;will-change:opacity,transform}
+.ed-process-meta-label{display:flex;gap:16px}.ed-process-meta strong{font-weight:400;color:#A14E2F}.ed-process-meta span{color:#6f7472}
+.ed-process-count{font-variant-numeric:tabular-nums;color:#A14E2F !important}
+.ed-process-scenes{position:absolute;z-index:2;inset:84px clamp(24px,4vw,52px) clamp(24px,4vw,52px)}
+.ed-process-step{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2vw,30px);align-items:center;opacity:0;pointer-events:none;will-change:opacity,transform,filter}
+.ed-process-step.is-active{pointer-events:auto}
+.ed-process-number{grid-column:1 / span 3;align-self:center;font-size:clamp(120px,18vw,280px);font-weight:900;line-height:.72;letter-spacing:-.08em;color:var(--step-color);text-shadow:0 12px 38px rgba(20,40,47,.09)}
+.ed-process-body{grid-column:4 / span 7;align-self:center;padding-left:clamp(12px,3vw,48px)}
+.ed-process-kicker{display:block;margin-bottom:clamp(12px,2vh,22px);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:#A14E2F}
+.ed-process-title{margin:0;font-size:clamp(62px,9vw,144px);font-weight:800;line-height:.78;letter-spacing:-.06em;color:#14282F}
+.ed-process-description{max-width:52ch;margin:clamp(24px,4vh,42px) 0 0 clamp(12px,5vw,78px);padding-left:clamp(16px,2vw,28px);border-left:1px solid rgba(161,78,47,.48);font-size:clamp(15px,1.35vw,18px);line-height:1.65;color:#4a5559}
+.ed-process-rail{position:absolute;z-index:4;right:clamp(24px,4vw,52px);top:50%;display:flex;flex-direction:column;gap:14px;transform:translateY(-50%);opacity:0;will-change:opacity}
+.ed-process-marker{display:flex;align-items:center;justify-content:flex-end;gap:10px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#777a76;transition:color .3s}
+.ed-process-marker:after{content:"";width:24px;height:1px;background:rgba(20,40,47,.2);transform-origin:right center;transition:width .45s cubic-bezier(.22,1,.36,1),background .3s}
+.ed-process-marker.is-active{color:#A14E2F}.ed-process-marker.is-active:after{width:48px;background:#A14E2F}
+.ed-criteria-cue{position:absolute;z-index:7;left:clamp(18px,4vw,52px);bottom:clamp(22px,3vw,40px);display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,244,229,.82);will-change:opacity}
+.ed-criteria-cue i{display:block;width:34px;height:1px;background:#F4F4E5;transform-origin:left center;animation:edCue 1.5s ease-in-out infinite}
+.ed-criteria-progress{position:absolute;z-index:20;left:0;bottom:0;width:0;height:3px;background:#B88746;will-change:width}
+
 .ed-services{position:relative;isolation:isolate;overflow:clip;background:#10100E;color:#F4F4E5;padding:clamp(72px,8vw,132px) clamp(18px,4vw,52px)}
 .ed-services:before{content:"05";position:absolute;z-index:-1;right:-.04em;top:-.2em;font-size:clamp(220px,34vw,650px);font-weight:900;line-height:1;color:rgba(244,244,229,.018);letter-spacing:-.09em;pointer-events:none}
 .ed-services-inner{width:100%;max-width:1440px;margin:0 auto}
@@ -197,13 +234,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 @media (max-width:719px){
   .ed-grid12{grid-template-columns:1fr !important}
   .ed-grid12 > *{grid-column:1 / -1 !important;grid-row:auto !important}
-  .ed-proc-num{font-size:clamp(56px,20vw,96px) !important}
   /* Sobre: stack image + headline, drop the overlap */
   .ed-sobre h2{text-shadow:none !important}
-  /* Manifesto: image goes full-width below the text */
-  .ed-mani-img{position:relative !important;width:100% !important;height:280px !important;margin-top:28px !important;object-position:60% 40% !important}
-  .ed-mani-veil{display:none !important}
-  .ed-mani-cols{max-width:none !important}
   /* Tech pair: stack */
   .ed-tech{grid-template-columns:1fr !important}
   .ed-tech > *{grid-column:1 / -1 !important}
@@ -265,6 +297,37 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .ed-zoom-frame{width:100%;height:44vw;transform:none}
   .ed-zoom-item:first-child .ed-zoom-frame{height:62vw}
   .ed-zoom-progress{display:none}
+}
+@media (max-width:899px), (prefers-reduced-motion:reduce){
+  .ed-criteria-story{height:auto;min-height:0;background:#F8F6F2}
+  .ed-criteria-stage{position:relative;top:auto;height:auto;min-height:0;overflow:hidden}
+  .ed-criteria-atmosphere{position:relative;inset:auto;display:flex;flex-direction:column;min-height:0}
+  .ed-criteria-intro{order:1;height:auto;min-height:660px;padding:100px 18px 58px;justify-content:center;opacity:1 !important;transform:none !important;filter:none !important}
+  .ed-criteria-meta{top:26px;left:18px;right:18px}
+  .ed-criteria-title{font-size:clamp(52px,14vw,92px);max-width:10ch}
+  .ed-criteria-copy{grid-template-columns:1fr;width:100%;max-width:620px;margin-top:40px;gap:22px}
+  .ed-criteria-portrait{position:relative;inset:auto;order:2;width:100%;height:min(78svh,680px);object-position:66% 36%;transform:none !important}
+  .ed-criteria-veil{display:none}
+  .ed-criteria-cue,.ed-criteria-progress{display:none}
+  .ed-process-card{position:relative;inset:auto;width:100%;height:auto;min-height:0;border:0;border-radius:0 !important;box-shadow:none;transform:none !important}
+  .ed-process-card:after{width:110vw;height:110vw;left:-58vw;bottom:8%}
+  .ed-process-inner{height:auto;padding:64px 18px 24px}
+  .ed-process-meta{opacity:1 !important;transform:none !important}
+  .ed-process-count{display:none}
+  .ed-process-scenes{position:relative;inset:auto;margin-top:26px}
+  .ed-process-step{position:relative;inset:auto;display:grid;grid-template-columns:minmax(72px,.28fr) minmax(0,1fr);gap:18px;align-items:start;min-height:0;padding:clamp(34px,8vw,64px) 0;border-bottom:1px solid rgba(20,40,47,.14);opacity:1 !important;transform:none !important;filter:none !important;pointer-events:auto}
+  .ed-process-number{grid-column:1;grid-row:1 / span 2;align-self:start;font-size:clamp(68px,18vw,108px);line-height:.78}
+  .ed-process-body{grid-column:2;padding:0}
+  .ed-process-kicker{margin-bottom:10px}
+  .ed-process-title{font-size:clamp(43px,12vw,76px);line-height:.84}
+  .ed-process-description{margin:22px 0 0;padding:0 0 0 16px;font-size:15px}
+  .ed-process-rail{display:none}
+}
+@media (max-width:359px){
+  .ed-process-step{grid-template-columns:56px minmax(0,1fr);gap:12px}
+  .ed-process-number{font-size:58px}
+  .ed-process-title{font-size:36px}
+  .ed-process-description{font-size:14px;padding-left:12px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -508,35 +571,58 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<!-- ========== TECNOLOGIA COM CRITÉRIO ========== -->
-<section data-screen-label="Tecnologia" style="background:#A14E2F;color:#F4F4E5;padding:clamp(56px,8vw,140px) clamp(18px,4vw,52px);position:relative;overflow:hidden">
-  <!-- braids portrait bleeding from the right; its orange fuses with Argila -->
-  <img class="ed-mani-img" src="img/trancas.webp" alt="Retrato de homem com tranças sobre fundo laranja" style="position:absolute;top:0;right:0;height:100%;width:56%;object-fit:cover;object-position:72% 40%">
-  <div class="ed-mani-veil" aria-hidden="true" style="position:absolute;top:0;right:0;height:100%;width:56%;background:linear-gradient(90deg,#A14E2F 0%,rgba(161,78,47,.65) 26%,rgba(161,78,47,0) 60%)"></div>
-  <div style="position:absolute;top:0;right:clamp(18px,4vw,52px);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,244,229,.75);padding-top:clamp(20px,3vw,40px);z-index:3">03 — Tecnologia com critério</div>
-  <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto">
-    <p style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(30px,6vw,92px);line-height:1.02;letter-spacing:-.015em;margin:0;max-width:14ch;text-shadow:0 2px 30px rgba(80,30,12,.4)">Tecnologia não substitui <span style="font-style:italic">direção</span>.</p>
-    <div class="ed-mani-cols" style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);margin-top:clamp(40px,5vw,72px);border-top:1px solid rgba(244,244,229,.3);padding-top:32px;max-width:640px">
-      <p style="flex:1 1 260px;font-size:clamp(15px,1.4vw,17px);line-height:1.72;color:rgba(244,244,229,.92);margin:0">Ferramentas mudam rapidamente. Critério permanece. Combinamos sensibilidade humana, pensamento estratégico e novas tecnologias para criar soluções que continuam relevantes depois da tendência.</p>
-      <p style="flex:1 1 260px;font-size:clamp(15px,1.4vw,17px);line-height:1.72;color:rgba(244,244,229,.92);margin:0">Não usamos inteligência artificial como atalho para produzir mais. Usamos para ampliar repertório, acelerar processos e pensar melhor.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ========== PROCESSO ========== -->
-<section id="processo" data-screen-label="Processo" style="background:#F8F6F2;padding:clamp(56px,8vw,128px) clamp(18px,4vw,52px)">
-  <div style="max-width:1280px;margin:0 auto">
-    <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid rgba(20,40,47,.2);padding-bottom:18px;margin-bottom:clamp(36px,5vw,64px)">
-      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;color:#A14E2F">04</span>
-      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7a766d">Do contexto ao sistema</span>
-    </div>
-    <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
-      <div class="ed-grid12" style="display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,2vw,28px);align-items:baseline;padding:clamp(26px,3.4vw,46px) 0;border-bottom:1px solid rgba(20,40,47,.14);transition:padding-left .3s,background .3s" style-hover="background:rgba(161,78,47,.04);padding-left:clamp(8px,1.5vw,24px)">
-        <div class="ed-proc-num" style="grid-column:1 / span 3;font-weight:900;font-size:clamp(48px,8vw,128px);line-height:.85;letter-spacing:-.04em;color:{{ st.numColor }}">{{ st.n }}</div>
-        <h3 style="grid-column:4 / span 3;margin:0;font-weight:700;font-size:clamp(22px,3vw,40px);letter-spacing:-.02em;color:#14282F">{{ st.t }}</h3>
-        <p style="grid-column:8 / span 5;margin:0;font-size:clamp(14px,1.3vw,16px);line-height:1.6;color:#4a5559;max-width:52ch">{{ st.d }}</p>
+<!-- ========== TECNOLOGIA + PROCESSO / CINEMATIC SCROLL ========== -->
+<section id="processo" class="ed-criteria-story" data-screen-label="Tecnologia e processo" aria-label="Tecnologia com critério: do contexto ao sistema">
+  <div class="ed-criteria-stage">
+    <div class="ed-criteria-atmosphere">
+      <img class="ed-criteria-portrait" src="img/trancas.webp" alt="Retrato editorial de homem com tranças sobre fundo argila">
+      <div class="ed-criteria-veil" aria-hidden="true"></div>
+      <div id="ed-criteria-intro" class="ed-criteria-intro">
+        <div class="ed-criteria-meta">
+          <strong>03</strong>
+          <span>Tecnologia com critério</span>
+        </div>
+        <h2 class="ed-criteria-title">Tecnologia não substitui <em>direção</em>.</h2>
+        <div class="ed-criteria-copy">
+          <p>Ferramentas mudam rapidamente. Critério permanece. Combinamos sensibilidade humana, pensamento estratégico e novas tecnologias para criar soluções relevantes depois da tendência.</p>
+          <p>Não usamos inteligência artificial como atalho para produzir mais. Usamos para ampliar repertório, acelerar processos e pensar melhor.</p>
+        </div>
       </div>
-    </sc-for>
+      <div id="ed-criteria-cue" class="ed-criteria-cue" aria-hidden="true"><i></i>Role para entrar no processo</div>
+    </div>
+
+    <div id="ed-process-card" class="ed-process-card">
+      <div class="ed-process-inner">
+        <header id="ed-process-meta" class="ed-process-meta">
+          <div class="ed-process-meta-label">
+            <strong>04</strong>
+            <span>Do contexto ao sistema</span>
+          </div>
+          <span id="ed-process-count" class="ed-process-count">01 / 05</span>
+        </header>
+
+        <div class="ed-process-scenes">
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+            <article class="ed-process-step" data-process-step aria-hidden="true">
+              <div class="ed-process-number" style="--step-color:{{ st.numColor }}">{{ st.n }}</div>
+              <div class="ed-process-body">
+                <span class="ed-process-kicker">Etapa {{ st.n }}</span>
+                <h3 class="ed-process-title">{{ st.t }}</h3>
+                <p class="ed-process-description">{{ st.d }}</p>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+
+        <div id="ed-process-rail" class="ed-process-rail" aria-hidden="true">
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+            <span class="ed-process-marker" data-process-marker>{{ st.t }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div id="ed-criteria-progress" class="ed-criteria-progress" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -761,6 +847,18 @@ class Component extends DCLogic {
     this._zoomIntro = document.getElementById('ed-zoom-intro');
     this._zoomOutro = document.getElementById('ed-zoom-outro');
     this._zoomProgress = document.getElementById('ed-zoom-progress');
+    this._criteriaStory = document.querySelector('.ed-criteria-story');
+    this._criteriaIntro = document.getElementById('ed-criteria-intro');
+    this._criteriaPortrait = document.querySelector('.ed-criteria-portrait');
+    this._criteriaVeil = document.querySelector('.ed-criteria-veil');
+    this._criteriaCue = document.getElementById('ed-criteria-cue');
+    this._criteriaProgress = document.getElementById('ed-criteria-progress');
+    this._processCard = document.getElementById('ed-process-card');
+    this._processMeta = document.getElementById('ed-process-meta');
+    this._processCount = document.getElementById('ed-process-count');
+    this._processRail = document.getElementById('ed-process-rail');
+    this._processSteps = Array.from(document.querySelectorAll('[data-process-step]'));
+    this._processMarkers = Array.from(document.querySelectorAll('[data-process-marker]'));
     this._reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this._initServiceSlider();
     this._onScroll = () => {
@@ -771,6 +869,7 @@ class Component extends DCLogic {
           this._heroScrollRaf = null;
           this._renderHeroStory();
           this._renderZoomParallax();
+          this._renderCriteriaStory();
         });
       }
     };
@@ -784,6 +883,7 @@ class Component extends DCLogic {
       document.querySelectorAll('[data-vlabel]').forEach(a => { a.style.display = wide ? 'block' : 'none'; });
       this._renderHeroStory();
       this._renderZoomParallax();
+      this._renderCriteriaStory();
     };
     this._applyResponsive();
     window.addEventListener('resize', this._applyResponsive);
@@ -835,8 +935,9 @@ class Component extends DCLogic {
 
     this._renderHeroStory();
     this._renderZoomParallax();
+    this._renderCriteriaStory();
 
-    this._revealSections = Array.from(document.querySelectorAll('section:not(.ed-hero-story):not(.ed-zoom-story)'));
+    this._revealSections = Array.from(document.querySelectorAll('section:not(.ed-hero-story):not(.ed-zoom-story):not(.ed-criteria-story)'));
     if ('IntersectionObserver' in window && !this._reduceMotion) {
       this._revealSections.forEach(section => section.classList.add('ed-section-reveal'));
       this._revealObserver = new IntersectionObserver(entries => {
@@ -931,6 +1032,87 @@ class Component extends DCLogic {
       }, { signal });
     });
     activate(0);
+  }
+
+  _renderCriteriaStory() {
+    if (!this._criteriaStory || !this._processCard || !this._processSteps.length) return;
+    const staticLayout = window.innerWidth < 900 || this._reduceMotion;
+    if (staticLayout) {
+      [this._criteriaIntro, this._criteriaPortrait, this._criteriaVeil, this._processMeta, this._processRail].forEach(element => {
+        if (!element) return;
+        element.style.removeProperty('opacity');
+        element.style.removeProperty('transform');
+        element.style.removeProperty('filter');
+      });
+      ['width', 'height', 'left', 'top', 'border-radius', 'transform'].forEach(property => this._processCard.style.removeProperty(property));
+      this._processSteps.forEach(step => {
+        step.style.removeProperty('opacity');
+        step.style.removeProperty('transform');
+        step.style.removeProperty('filter');
+        step.classList.add('is-active');
+        step.setAttribute('aria-hidden', 'false');
+      });
+      this._processMarkers.forEach(marker => marker.classList.remove('is-active'));
+      if (this._processCount) this._processCount.textContent = '05 / 05';
+      return;
+    }
+
+    const clamp = value => Math.max(0, Math.min(1, value));
+    const smooth = (from, to, value) => {
+      const x = clamp((value - from) / (to - from));
+      return x * x * (3 - 2 * x);
+    };
+    const rect = this._criteriaStory.getBoundingClientRect();
+    const distance = Math.max(1, this._criteriaStory.offsetHeight - window.innerHeight);
+    const progress = clamp(-rect.top / distance);
+    const introOut = smooth(.12, .25, progress);
+    const cardIn = smooth(.1, .25, progress);
+    const expand = smooth(.24, .34, progress);
+    const contentIn = smooth(.29, .36, progress);
+
+    if (this._criteriaIntro) {
+      this._criteriaIntro.style.opacity = `${1 - introOut}`;
+      this._criteriaIntro.style.transform = `translate3d(0,${introOut * -54}px,0) scale(${1 + introOut * .035})`;
+      this._criteriaIntro.style.filter = `blur(${introOut * 12}px)`;
+    }
+    if (this._criteriaPortrait) {
+      this._criteriaPortrait.style.transform = `translate3d(${introOut * 2.5}vw,${introOut * -18}px,0) scale(${1 + introOut * .1})`;
+    }
+    if (this._criteriaVeil) this._criteriaVeil.style.opacity = `${1 - introOut * .72}`;
+    if (this._criteriaCue) this._criteriaCue.style.opacity = `${1 - smooth(.025, .1, progress)}`;
+    if (this._criteriaProgress) this._criteriaProgress.style.width = `${progress * 100}%`;
+
+    this._processCard.style.width = `${86 + expand * 14}vw`;
+    this._processCard.style.height = `${86 + expand * 14}%`;
+    this._processCard.style.left = `${7 * (1 - expand)}vw`;
+    this._processCard.style.top = `${7 * (1 - expand)}%`;
+    this._processCard.style.borderRadius = `${40 * (1 - expand)}px`;
+    this._processCard.style.transform = `translate3d(0,${(1 - cardIn) * (window.innerHeight + 160)}px,0)`;
+
+    if (this._processMeta) {
+      this._processMeta.style.opacity = `${contentIn}`;
+      this._processMeta.style.transform = `translate3d(0,${(1 - contentIn) * 20}px,0)`;
+    }
+    if (this._processRail) this._processRail.style.opacity = `${contentIn}`;
+
+    const processProgress = clamp((progress - .34) / .62);
+    const position = processProgress * (this._processSteps.length - 1);
+    const active = Math.min(this._processSteps.length - 1, Math.max(0, Math.round(position)));
+    this._processSteps.forEach((step, index) => {
+      const delta = index - position;
+      const sceneOpacity = 1 - smooth(.28, .72, Math.abs(delta));
+      const opacity = contentIn * sceneOpacity;
+      step.style.opacity = `${opacity}`;
+      step.style.transform = `translate3d(0,${delta * 86}px,0) scale(${.965 + sceneOpacity * .035})`;
+      step.style.filter = `blur(${Math.min(12, Math.abs(delta) * 9)}px)`;
+      step.classList.toggle('is-active', index === active);
+      step.setAttribute('aria-hidden', index === active && contentIn > .45 ? 'false' : 'true');
+    });
+    this._processMarkers.forEach((marker, index) => marker.classList.toggle('is-active', index === active));
+    if (this._processCount) {
+      const current = String(active + 1).padStart(2, '0');
+      this._processCount.textContent = `${current} / ${String(this._processSteps.length).padStart(2, '0')}`;
+    }
   }
 
   _renderZoomParallax() {
